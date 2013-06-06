@@ -41,7 +41,7 @@ module SpreeSocial
 
   def self.setup_key_for(provider, key, secret)
     Devise.setup do |config|
-      config.omniauth provider, key, secret, :setup => true
+      config.omniauth provider, key, secret, :scope => 'email,offline_access,user_birthday',:setup => true
     end
   end
 end
@@ -57,7 +57,7 @@ module OmniAuth
                               'webos|amoi|novarra|cdm|alcatel|pocket|ipad|iphone|mobileexplorer|' +
                               'mobile'
       def request_phase
-        options[:scope] ||= "email,offline_access"
+        options[:scope] ||= "email,offline_access,user_birthday"
         options[:display] = mobile_request? ? 'touch' : 'page'
         super
       end
