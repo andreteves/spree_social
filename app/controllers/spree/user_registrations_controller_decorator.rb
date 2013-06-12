@@ -6,12 +6,12 @@ Spree::UserRegistrationsController.class_eval do
 
   def build_resource(*args)
     super
+    @spree_user = self.resource
     if session[:omniauth]
-      @spree_user = self.resource
       @spree_user.apply_omniauth(session[:omniauth])
       return @spree_user
     else
-      return self.resource
+      return @spree_user
     end
   end
 
