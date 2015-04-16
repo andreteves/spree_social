@@ -10,7 +10,7 @@ module Spree
         auth_method = params[:authentication_method]
         if auth_method[:active] == "true" && auth_method[:environment] == ::Rails.env
           Devise.setup do |config|
-            config.omniauth auth_method[:provider], auth_method[:api_key], auth_method[:api_secret],  :scope => 'email,offline_access,user_birthday'
+            config.omniauth auth_method[:provider], auth_method[:api_key], auth_method[:api_secret],  :scope => 'email,offline_access'
           end
         end
       end
